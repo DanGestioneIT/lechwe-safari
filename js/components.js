@@ -85,8 +85,9 @@ function renderFooter(depth = 0) {
         <h4>Contact Us</h4>
         <ul>
           <li style="font-size:0.9rem;margin-bottom:0.5rem;">📍 Kampala, Uganda</li>
-          <li style="font-size:0.9rem;margin-bottom:0.5rem;">📧 TBD</li>
+          <li style="font-size:0.9rem;margin-bottom:0.5rem;">📧 lechwetours24@gmail.com</li>
           <li style="font-size:0.9rem;margin-bottom:0.5rem;">📞 +256 760 288509</li>
+          <li style="font-size:0.9rem;margin-bottom:0.5rem;">📞 +256 708 471637</li>
           <li style="font-size:0.9rem;">💬 WhatsApp Available</li>
         </ul>
       </div>
