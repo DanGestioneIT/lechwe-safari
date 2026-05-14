@@ -83,3 +83,4 @@ Poi fare upload del file aggiornato su GitHub.
   Da aggiornare con il numero completo.
 - I **prezzi** dei tour non sono stati inseriti — da aggiungere in `js/tours-data.js`
   per ogni tour (campo `price` da aggiungere e mostrare nella sidebar).
+
