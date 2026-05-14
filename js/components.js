@@ -4,7 +4,7 @@
 
 const IMG_BASE = 'https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/';
 const LOGO = IMG_BASE + 'logo-web.png';
-const WA_NUMBER = '+256780000000'; // Update with real number
+const WA_NUMBER = '+256760288509';
 
 function getRelPath(depth = 0) {
   return depth === 0 ? '' : '../'.repeat(depth);
@@ -86,7 +86,7 @@ function renderFooter(depth = 0) {
         <ul>
           <li style="font-size:0.9rem;margin-bottom:0.5rem;">📍 Kampala, Uganda</li>
           <li style="font-size:0.9rem;margin-bottom:0.5rem;">📧 info@lechwesafari.com</li>
-          <li style="font-size:0.9rem;margin-bottom:0.5rem;">📞 +256 780 000 000</li>
+          <li style="font-size:0.9rem;margin-bottom:0.5rem;">📞 +256 760 288509</li>
           <li style="font-size:0.9rem;">💬 WhatsApp Available</li>
         </ul>
       </div>
