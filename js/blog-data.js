@@ -2,7 +2,7 @@
    blog-data.js — All blog post content
    ============================================================ */
 
-const IMG = 'https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/';
+const IMG = 'images/';
 
 const BLOG_POSTS = [
   {

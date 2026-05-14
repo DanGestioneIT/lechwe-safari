@@ -2,8 +2,7 @@
    components.js — Header, Footer, Shared UI
    ============================================================ */
 
-const IMG_BASE = 'https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/';
-const LOGO = IMG_BASE + 'logo-web.png';
+const LOGO = 'images/logo-web.png';
 const WA_NUMBER = '+256760288509';
 
 function getRelPath(depth = 0) {
