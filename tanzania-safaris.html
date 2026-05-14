@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanzania Safaris — Lechwe Safari</title>
+  <meta name="description" content="Tanzania safari packages — Serengeti, Ngorongoro Crater, Tarangire, and Zanzibar.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/Serengeti-Adventure-Safari-720x450.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,0.9)">Tanzania Safaris</span></div>
+      <h1>Tanzania Safaris</h1>
+      <p style="opacity:0.85;max-width:600px;margin-top:0.5rem;">Serengeti, Ngorongoro, and Zanzibar — East Africa's ultimate Big 5 and Great Migration destination.</p>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Serengeti & Beyond</span>
+      <h2>Best Safaris in Tanzania</h2>
+      <p>Tanzania is East Africa's premier Big 5 and Great Migration destination. From the vibrant Serengeti to exotic Zanzibar, each destination promises captivating African experiences.</p>
+    </div>
+    <div class="tour-grid" id="tanzania-tours"></div>
+  </div>
+</section>
+<section class="booking-strip">
+  <div><h2>Your Tanzania Safari Awaits</h2><p>Serengeti sunrises, Ngorongoro sunsets, Zanzibar beaches — let us put it together for you.</p><a href="contact.html" class="btn btn-forest">Start Planning</a></div>
+</section>
+<div id="footer-placeholder"></div>
+<script src="js/tours-data.js"></script><script src="js/components.js"></script>
+<script>
+  initPage(0);
+  ['tanzania-9-days','tanzania-8-days-wildebeest','tanzania-6-days'].forEach(id => {
+    const t = TOURS[id];
+    document.getElementById('tanzania-tours').innerHTML += `<a href="tour.html?id=${t.id}" class="tour-card" style="text-decoration:none;"><div class="tour-card-img"><img src="${t.image}" alt="${t.title}" loading="lazy"><span class="tour-card-badge">${t.duration}</span></div><div class="tour-card-body"><h3>${t.title}</h3><div class="tour-card-meta"><span>🕐 ${t.duration}</span><span>📅 ${t.bestSeason}</span></div><p>${t.subtitle}</p><span class="btn btn-outline-dark" style="font-size:0.8rem;padding:0.6rem 1.25rem;">View Itinerary</span></div></a>`;
+  });
+</script>
+</body></html>

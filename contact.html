@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Now — Lechwe Safari</title>
+  <meta name="description" content="Contact Lechwe Safari to book your East Africa safari — gorilla trekking, wildlife safaris, and custom itineraries.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/9Days-Adventure-Safari-in-Tanzania-720x450.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,0.9)">Book Now</span></div>
+      <h1>Plan Your Safari</h1>
+      <p style="opacity:0.85;max-width:560px;margin-top:0.5rem;">Tell us your dream — we'll turn it into the East Africa adventure of your lifetime.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Contact info -->
+      <div class="contact-info">
+        <span class="eyebrow">Get in Touch</span>
+        <h2>We'd Love to Hear From You</h2>
+        <div class="divider"></div>
+        <p>Whether you're ready to book or still exploring your options, our team is here to help. We respond to all enquiries within 24 hours.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📍</div>
+          <div class="contact-detail-text">
+            <div class="label">Location</div>
+            <p>Kampala, Uganda</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📧</div>
+          <div class="contact-detail-text">
+            <div class="label">Email</div>
+            <p><a href="mailto:info@lechwesafari.com" style="color:var(--forest);">info@lechwesafari.com</a></p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div class="contact-detail-text">
+            <div class="label">Phone</div>
+            <p>+256 780 000 000</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">💬</div>
+          <div class="contact-detail-text">
+            <div class="label">WhatsApp</div>
+            <p><a href="https://wa.me/256780000000" target="_blank" style="color:var(--forest);">Chat with us on WhatsApp</a></p>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem;padding:1.5rem;background:var(--cream);border-radius:4px;border-left:4px solid var(--gold);">
+          <h4 style="color:var(--forest);margin-bottom:0.5rem;">Office Hours</h4>
+          <p style="font-size:0.9rem;color:#555;margin:0;">Monday – Saturday: 8:00 AM – 6:00 PM (EAT)<br>We also respond to urgent WhatsApp messages outside office hours.</p>
+        </div>
+      </div>
+
+      <!-- Booking form -->
+      <div>
+        <span class="eyebrow">Book a Tour</span>
+        <h2>Send Us Your Enquiry</h2>
+        <div class="divider"></div>
+        <!-- Formspree endpoint — update ACTION with real Formspree form ID -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="booking-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="first-name">First Name *</label>
+              <input type="text" id="first-name" name="first_name" required placeholder="Your first name">
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name *</label>
+              <input type="text" id="last-name" name="last_name" required placeholder="Your last name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone / WhatsApp</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 890">
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="destination">Destination *</label>
+              <select id="destination" name="destination" required>
+                <option value="">Select destination</option>
+                <option>Uganda</option>
+                <option>Rwanda</option>
+                <option>Kenya</option>
+                <option>Tanzania</option>
+                <option>Combined East Africa</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="duration">Trip Duration</label>
+              <select id="duration" name="duration">
+                <option value="">Select duration</option>
+                <option>3–5 days</option>
+                <option>6–9 days</option>
+                <option>10–14 days</option>
+                <option>15+ days</option>
+                <option>Flexible</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="travelers">Number of Travelers *</label>
+              <select id="travelers" name="travelers" required>
+                <option value="">Select</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3–5</option>
+                <option>6–10</option>
+                <option>10+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="travel-date">Approximate Travel Date</label>
+              <input type="month" id="travel-date" name="travel_date">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="interests">Safari Interests</label>
+            <select id="interests" name="interests">
+              <option value="">Select main interest</option>
+              <option>Gorilla Trekking</option>
+              <option>Chimpanzee Trekking</option>
+              <option>Big 5 Wildlife Safaris</option>
+              <option>Great Migration</option>
+              <option>Birding</option>
+              <option>Cultural Experiences</option>
+              <option>Beach & Safari Combo</option>
+              <option>All of the Above!</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message *</label>
+            <textarea id="message" name="message" required placeholder="Tell us about your dream safari — any special interests, requirements, or questions..."></textarea>
+          </div>
+          <!-- Honeypot spam protection -->
+          <input type="text" name="_gotcha" style="display:none;">
+          <input type="hidden" name="_subject" value="New Safari Enquiry — Lechwe Safari">
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">Send Enquiry →</button>
+          <p id="form-status" style="margin-top:1rem;text-align:center;font-weight:600;display:none;"></p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Popular Packages Quick Links -->
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Popular Packages</span>
+      <h2>Most Booked Safaris</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;">
+      <a href="tour.html?id=uganda-15-days" class="btn btn-outline-dark">15 Days Uganda</a>
+      <a href="tour.html?id=uganda-12-days" class="btn btn-outline-dark">12 Days Uganda Primates</a>
+      <a href="tour.html?id=rwanda-7-days" class="btn btn-outline-dark">7 Days Rwanda</a>
+      <a href="tour.html?id=kenya-10-days" class="btn btn-outline-dark">10 Days Kenya</a>
+      <a href="tour.html?id=tanzania-9-days" class="btn btn-outline-dark">9 Days Tanzania</a>
+      <a href="tour.html?id=combined-20-days" class="btn btn-gold">20 Days East Africa</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/components.js"></script>
+<script>
+  initPage(0);
+
+  // Prefill tour from URL param
+  const params = new URLSearchParams(window.location.search);
+  const tourName = params.get('tour');
+  if (tourName) {
+    document.getElementById('message').value = `I am interested in booking the "${tourName}" package. Please send me more details and availability.`;
+  }
+
+  // Form submission feedback
+  const form = document.getElementById('booking-form');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        status.style.display = 'block';
+        status.style.color = 'var(--forest)';
+        status.textContent = '✓ Thank you! We will be in touch within 24 hours.';
+        form.reset();
+      } else {
+        throw new Error();
+      }
+    } catch {
+      status.style.display = 'block';
+      status.style.color = '#c0392b';
+      status.textContent = 'Something went wrong. Please email us directly at info@lechwesafari.com';
+    }
+  });
+</script>
+</body>
+</html>

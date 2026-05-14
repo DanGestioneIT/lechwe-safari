@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uganda Safaris — Lechwe Safari</title>
+  <meta name="description" content="Discover the best Uganda safari packages — gorilla trekking in Bwindi, chimpanzees in Kibale, and wildlife in Queen Elizabeth National Park.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/Uganda-Wildlife-Safari-720x480.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,0.9)">Uganda Safaris</span></div>
+      <h1>Uganda Safaris</h1>
+      <p style="opacity:0.85;max-width:600px;margin-top:0.5rem;">The Pearl of Africa — gorillas, chimpanzees, savannah wildlife, and the mighty Nile.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">The Pearl of Africa</span>
+      <h2>Unmatched Uganda Safaris with Lechwe Safari</h2>
+      <p>Uganda earns its name "The Pearl of Africa" in the most natural way. Massively endowed with gorilla mountains, elephant herds, thousands of bird species — Uganda's diversity is absolutely incredible.</p>
+    </div>
+    <div style="max-width:860px;margin:0 auto 3rem;color:#555;line-height:1.85;">
+      <p>From snowcapped Rwenzori mountains, to vast Lake Victoria, the lush impenetrable rainforests of Kibale and Bwindi, along with endless plain savannahs — Uganda is exceptional. Wildlife safaris here are completely astonishing. With Lechwe Safari, travelers don't just see wildlife — they feel like they are part of it. Professional tour guides, expert knowledge of Uganda's top tourism hubs, and personal service from arrival to departure.</p>
+    </div>
+    <div class="tour-grid" id="uganda-tours"></div>
+  </div>
+</section>
+
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Uganda's Top Parks</span>
+      <h2>Where We Take You</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+      <div style="padding:1.5rem;background:white;border-radius:4px;box-shadow:var(--shadow);">
+        <h4 style="color:var(--forest);margin-bottom:0.5rem;">🦍 Bwindi Impenetrable Forest</h4>
+        <p style="font-size:0.9rem;color:#555;">UNESCO World Heritage Site, home to nearly half of all remaining mountain gorillas.</p>
+      </div>
+      <div style="padding:1.5rem;background:white;border-radius:4px;box-shadow:var(--shadow);">
+        <h4 style="color:var(--forest);margin-bottom:0.5rem;">🐒 Kibale National Park</h4>
+        <p style="font-size:0.9rem;color:#555;">The world's best chimpanzee trekking destination with over 1,500 chimps.</p>
+      </div>
+      <div style="padding:1.5rem;background:white;border-radius:4px;box-shadow:var(--shadow);">
+        <h4 style="color:var(--forest);margin-bottom:0.5rem;">🦁 Queen Elizabeth NP</h4>
+        <p style="font-size:0.9rem;color:#555;">Tree-climbing lions in Ishasha, Kazinga Channel boat cruises, and excellent Big 4 game drives.</p>
+      </div>
+      <div style="padding:1.5rem;background:white;border-radius:4px;box-shadow:var(--shadow);">
+        <h4 style="color:var(--forest);margin-bottom:0.5rem;">💦 Murchison Falls NP</h4>
+        <p style="font-size:0.9rem;color:#555;">Uganda's largest park. The Nile's most dramatic spectacle plus superb Nile cruise wildlife viewing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking-strip">
+  <div>
+    <h2>Can't Find the Right Package?</h2>
+    <p>We create custom Uganda safari itineraries tailored to your exact dates and interests.</p>
+    <a href="contact.html" class="btn btn-forest">Contact Us</a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/tours-data.js"></script>
+<script src="js/components.js"></script>
+<script>
+  initPage(0);
+  const container = document.getElementById('uganda-tours');
+  ['uganda-15-days','uganda-12-days','uganda-10-days','uganda-8-days'].forEach(id => {
+    const t = TOURS[id];
+    container.innerHTML += `
+      <a href="tour.html?id=${t.id}" class="tour-card" style="text-decoration:none;">
+        <div class="tour-card-img">
+          <img src="${t.image}" alt="${t.title}" loading="lazy">
+          <span class="tour-card-badge">${t.duration}</span>
+        </div>
+        <div class="tour-card-body">
+          <h3>${t.title}</h3>
+          <div class="tour-card-meta">
+            <span>🕐 ${t.duration}</span><span>📅 ${t.bestSeason}</span>
+          </div>
+          <p>${t.subtitle}</p>
+          <span class="btn btn-outline-dark" style="font-size:0.8rem;padding:0.6rem 1.25rem;">View Itinerary</span>
+        </div>
+      </a>`;
+  });
+</script>
+</body>
+</html>

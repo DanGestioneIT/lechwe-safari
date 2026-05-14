@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenya Safaris — Lechwe Safari</title>
+  <meta name="description" content="Kenya safari packages — Maasai Mara, Great Migration, Amboseli, and Rift Valley lakes.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/10-Days-safari-in-Kenya-720x450.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,0.9)">Kenya Safaris</span></div>
+      <h1>Kenya Safaris</h1>
+      <p style="opacity:0.85;max-width:600px;margin-top:0.5rem;">The birthplace of the safari — Maasai Mara, the Great Migration, Amboseli, and the Rift Valley lakes.</p>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Birthplace of the Safari</span>
+      <h2>Best Safaris in Kenya</h2>
+      <p>Kenya promises not only savanna wilderness experiences but also beach holidays. Known as the birthplace of the safari, Kenya is the best place to enjoy the blend of wildlife and beach experiences.</p>
+    </div>
+    <div class="tour-grid" id="kenya-tours"></div>
+  </div>
+</section>
+<section class="booking-strip">
+  <div><h2>Plan Your Kenya Safari</h2><p>Great Migration, Big 5, and pristine beaches — let us design your perfect Kenya experience.</p><a href="contact.html" class="btn btn-forest">Book Now</a></div>
+</section>
+<div id="footer-placeholder"></div>
+<script src="js/tours-data.js"></script><script src="js/components.js"></script>
+<script>
+  initPage(0);
+  ['kenya-10-days','kenya-8-days','kenya-5-days'].forEach(id => {
+    const t = TOURS[id];
+    document.getElementById('kenya-tours').innerHTML += `<a href="tour.html?id=${t.id}" class="tour-card" style="text-decoration:none;"><div class="tour-card-img"><img src="${t.image}" alt="${t.title}" loading="lazy"><span class="tour-card-badge">${t.duration}</span></div><div class="tour-card-body"><h3>${t.title}</h3><div class="tour-card-meta"><span>🕐 ${t.duration}</span><span>📅 ${t.bestSeason}</span></div><p>${t.subtitle}</p><span class="btn btn-outline-dark" style="font-size:0.8rem;padding:0.6rem 1.25rem;">View Itinerary</span></div></a>`;
+  });
+</script>
+</body></html>

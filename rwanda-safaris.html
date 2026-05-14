@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rwanda Safaris — Lechwe Safari</title>
+  <meta name="description" content="Rwanda safari packages — gorilla trekking in Volcanoes NP, chimpanzees in Nyungwe, and Big 5 in Akagera.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/Gorilla-Tour-rwanda-720x450.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,0.9)">Rwanda Safaris</span></div>
+      <h1>Rwanda Safaris</h1>
+      <p style="opacity:0.85;max-width:600px;margin-top:0.5rem;">Land of a Thousand Hills — gorillas, golden monkeys, and Africa's most inspiring conservation story.</p>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Land of a Thousand Hills</span>
+      <h2>Rwanda Safari Holidays with Lechwe Safari</h2>
+      <p>Rwanda excites visitors with its rolling hills, neatness, rich cultural heritage, and world-class wildlife. Today Rwanda prides itself as a premier tourism destination in Africa.</p>
+    </div>
+    <div class="tour-grid" id="rwanda-tours"></div>
+  </div>
+</section>
+<section class="booking-strip">
+  <div><h2>Plan Your Rwanda Safari</h2><p>Custom Rwanda itineraries designed around your interests and schedule.</p><a href="contact.html" class="btn btn-forest">Get in Touch</a></div>
+</section>
+<div id="footer-placeholder"></div>
+<script src="js/tours-data.js"></script><script src="js/components.js"></script>
+<script>
+  initPage(0);
+  ['rwanda-7-days','rwanda-4-days','rwanda-3-days'].forEach(id => {
+    const t = TOURS[id];
+    document.getElementById('rwanda-tours').innerHTML += `<a href="tour.html?id=${t.id}" class="tour-card" style="text-decoration:none;"><div class="tour-card-img"><img src="${t.image}" alt="${t.title}" loading="lazy"><span class="tour-card-badge">${t.duration}</span></div><div class="tour-card-body"><h3>${t.title}</h3><div class="tour-card-meta"><span>🕐 ${t.duration}</span><span>📅 ${t.bestSeason}</span></div><p>${t.subtitle}</p><span class="btn btn-outline-dark" style="font-size:0.8rem;padding:0.6rem 1.25rem;">View Itinerary</span></div></a>`;
+  });
+</script>
+</body></html>

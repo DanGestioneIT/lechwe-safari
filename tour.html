@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour — Lechwe Safari</title>
+  <meta name="description" content="Safari package details — Lechwe Safari East Africa.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- Page Hero (populated by JS) -->
+<div id="page-hero"></div>
+
+<!-- ── TOUR DETAIL ────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <div id="tour-content" class="spinner"></div>
+  </div>
+</section>
+
+<!-- ── BOOKING CTA ────────────────────────────────────────── -->
+<section class="booking-strip">
+  <div>
+    <h2>Ready to Book This Safari?</h2>
+    <p>Contact us today and we'll tailor this itinerary perfectly to your dates, group, and preferences.</p>
+    <a href="contact.html" class="btn btn-forest">Book Now</a>
+  </div>
+</section>
+
+<!-- ── RELATED TOURS ──────────────────────────────────────── -->
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-header">
+      <h2>You May Also Like</h2>
+    </div>
+    <div class="tour-grid" id="related-tours"></div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/tours-data.js"></script>
+<script src="js/components.js"></script>
+<script>
+  initPage(0);
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  const tour = getTourById(id);
+
+  if (!tour) {
+    document.getElementById('tour-content').innerHTML = '<p style="text-align:center;padding:3rem;">Tour not found. <a href="index.html">Return home</a>.</p>';
+  } else {
+    document.title = tour.title + ' — Lechwe Safari';
+
+    // Hero
+    document.getElementById('page-hero').innerHTML = `
+      <div class="page-hero">
+        <div class="page-hero-bg" style="background-image:url('${tour.heroImage}')"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+          <div class="container">
+            <div class="breadcrumb">
+              <a href="index.html">Home</a><span>›</span>
+              <a href="${tour.country.includes('&') ? 'uganda-safaris.html' : tour.country.toLowerCase().split(' ')[0] + '-safaris.html'}">${tour.country}</a><span>›</span>
+              <span style="color:rgba(255,255,255,0.9)">${tour.title}</span>
+            </div>
+            <h1>${tour.title}</h1>
+            <p style="opacity:0.85;max-width:600px;margin-top:0.5rem;">${tour.subtitle}</p>
+          </div>
+        </div>
+      </div>`;
+
+    // Main content
+    const inclHtml = tour.inclusions.map(i => `<div class="inc-item">${i}</div>`).join('');
+    const exclHtml = tour.exclusions.map(i => `<div class="inc-item exc-item">${i}</div>`).join('');
+    const hiHtml = tour.highlights.map(h => `<li style="margin-bottom:0.4rem;font-size:0.92rem;">✦ ${h}</li>`).join('');
+    const itinHtml = tour.itinerary.map(d => `
+      <div class="itinerary-day">
+        <div class="day-num">Day ${d.day}</div>
+        <div class="day-content">
+          <h4>${d.title}</h4>
+          <p>${d.desc}</p>
+        </div>
+      </div>`).join('');
+
+    document.getElementById('tour-content').innerHTML = `
+      <div class="tour-detail-layout">
+        <div class="tour-main">
+          <span class="eyebrow">${tour.country} Safari</span>
+          <h2 style="margin-bottom:1.25rem;">${tour.title}</h2>
+          <p style="font-size:1.05rem;color:#555;line-height:1.85;margin-bottom:2rem;">${tour.overview}</p>
+
+          <h3 style="margin-bottom:1rem;">Safari Highlights</h3>
+          <ul style="list-style:none;margin-bottom:2.5rem;">${hiHtml}</ul>
+
+          <h3 style="margin-bottom:1.5rem;">Detailed Itinerary</h3>
+          <div class="itinerary">${itinHtml}</div>
+
+          <h3 style="margin:2.5rem 0 1rem;">What's Included</h3>
+          <div class="inclusions-grid">${inclHtml}</div>
+
+          <h3 style="margin:2rem 0 1rem;">What's Not Included</h3>
+          <div class="inclusions-grid">${exclHtml}</div>
+        </div>
+
+        <div class="tour-sidebar">
+          <h3>Safari Overview</h3>
+          <div class="sidebar-info">
+            <div class="sidebar-row"><span class="label">Duration</span><span class="value">${tour.duration}</span></div>
+            <div class="sidebar-row"><span class="label">Group Size</span><span class="value">${tour.groupSize}</span></div>
+            <div class="sidebar-row"><span class="label">Best Season</span><span class="value">${tour.bestSeason}</span></div>
+            <div class="sidebar-row"><span class="label">Difficulty</span><span class="value">${tour.difficulty}</span></div>
+            <div class="sidebar-row"><span class="label">Accommodation</span><span class="value">${tour.accommodation}</span></div>
+          </div>
+          <a href="contact.html?tour=${encodeURIComponent(tour.title)}" class="btn btn-gold" style="width:100%;justify-content:center;margin-bottom:0.75rem;">Book This Safari</a>
+          <a href="contact.html" class="btn btn-outline-dark" style="width:100%;justify-content:center;">Ask a Question</a>
+          <div style="margin-top:1.5rem;padding:1rem;background:white;border-radius:4px;font-size:0.85rem;text-align:center;color:#666;">
+            <strong style="color:var(--forest);">Need a custom itinerary?</strong><br>
+            We tailor every safari to your exact needs. Contact us to discuss.
+          </div>
+        </div>
+      </div>`;
+
+    // Related tours (same country, different id)
+    const related = Object.values(TOURS).filter(t => t.id !== id && (t.country === tour.country || t.country.includes(tour.country.split(' ')[0]))).slice(0, 3);
+    if (related.length === 0) {
+      Object.values(TOURS).filter(t => t.id !== id).slice(0, 3).forEach(addRelated);
+    } else {
+      related.forEach(addRelated);
+    }
+
+    function addRelated(t) {
+      document.getElementById('related-tours').innerHTML += `
+        <a href="tour.html?id=${t.id}" class="tour-card" style="text-decoration:none;">
+          <div class="tour-card-img">
+            <img src="${t.image}" alt="${t.title}" loading="lazy">
+            <span class="tour-card-badge">${t.country}</span>
+          </div>
+          <div class="tour-card-body">
+            <h3>${t.title}</h3>
+            <div class="tour-card-meta">
+              <span>🕐 ${t.duration}</span>
+              <span>👥 ${t.groupSize}</span>
+            </div>
+            <p>${t.subtitle}</p>
+            <span class="btn btn-outline-dark" style="font-size:0.8rem;padding:0.6rem 1.25rem;">View Details</span>
+          </div>
+        </a>`;
+    }
+  }
+</script>
+</body>
+</html>

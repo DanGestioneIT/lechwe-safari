@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article — Lechwe Safari</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div id="post-hero"></div>
+
+<section>
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:3rem;align-items:start;" id="post-layout">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-cream">
+  <div class="container">
+    <div class="section-header"><h2>More Articles</h2></div>
+    <div class="blog-grid" id="related-posts"></div>
+  </div>
+</section>
+
+<section class="booking-strip">
+  <div>
+    <h2>Inspired? Plan Your Safari</h2>
+    <p>Turn these stories into your own memories. Contact Lechwe Safari today.</p>
+    <a href="contact.html" class="btn btn-forest">Book Now</a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/blog-data.js"></script>
+<script src="js/tours-data.js"></script>
+<script src="js/components.js"></script>
+<script>
+  initPage(0);
+
+  const params = new URLSearchParams(window.location.search);
+  const post = getBlogPostById(params.get('id'));
+
+  if (!post) {
+    document.getElementById('post-layout').innerHTML = '<p style="text-align:center;padding:3rem;">Article not found. <a href="blog.html">Back to blog</a>.</p>';
+  } else {
+    document.title = post.title + ' — Lechwe Safari';
+
+    // Hero
+    document.getElementById('post-hero').innerHTML = `
+      <div class="page-hero">
+        <div class="page-hero-bg" style="background-image:url('${post.image}')"></div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-content">
+          <div class="container">
+            <div class="breadcrumb">
+              <a href="index.html">Home</a><span>›</span>
+              <a href="blog.html">Blog</a><span>›</span>
+              <span style="color:rgba(255,255,255,0.9)">${post.category}</span>
+            </div>
+            <h1>${post.title}</h1>
+            <p style="opacity:0.7;margin-top:0.5rem;font-size:0.9rem;">${post.category} · ${post.country} · ${post.date}</p>
+          </div>
+        </div>
+      </div>`;
+
+    // Main post layout
+    document.getElementById('post-layout').innerHTML = `
+      <article>
+        <img src="${post.image}" alt="${post.title}" class="post-img" loading="lazy">
+        <div class="post-body">${post.content}</div>
+      </article>
+      <aside>
+        <div style="position:sticky;top:7rem;">
+          <div style="background:var(--cream);padding:1.75rem;border-radius:4px;border-top:4px solid var(--gold);margin-bottom:2rem;">
+            <h4 style="color:var(--forest);margin-bottom:1rem;">Plan a Safari Here</h4>
+            <p style="font-size:0.9rem;color:#555;margin-bottom:1.25rem;">Ready to experience ${post.country} for yourself? Lechwe Safari designs custom itineraries to all the destinations we write about.</p>
+            <a href="contact.html" class="btn btn-gold" style="width:100%;justify-content:center;">Book Now</a>
+          </div>
+          <div style="background:var(--cream);padding:1.75rem;border-radius:4px;">
+            <h4 style="color:var(--forest);margin-bottom:1rem;">Related Packages</h4>
+            <div id="sidebar-tours"></div>
+          </div>
+        </div>
+      </aside>`;
+
+    // Sidebar tours (match country)
+    const countryKey = post.country.split(' ')[0].toLowerCase();
+    const related = Object.values(TOURS).filter(t => t.country.toLowerCase().includes(countryKey)).slice(0, 3);
+    const sb = document.getElementById('sidebar-tours');
+    related.forEach(t => {
+      sb.innerHTML += `
+        <a href="tour.html?id=${t.id}" style="display:block;padding:0.75rem 0;border-bottom:1px solid var(--sand);text-decoration:none;">
+          <div style="font-weight:700;font-size:0.9rem;color:var(--forest);">${t.title}</div>
+          <div style="font-size:0.8rem;color:#888;">${t.duration}</div>
+        </a>`;
+    });
+
+    // Related posts
+    const others = BLOG_POSTS.filter(p => p.id !== post.id).slice(0, 3);
+    const rp = document.getElementById('related-posts');
+    others.forEach(p => {
+      rp.innerHTML += `
+        <a href="post.html?id=${p.id}" class="blog-card" style="text-decoration:none;">
+          <div class="blog-card-img"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
+          <div class="blog-card-body">
+            <div class="category">${p.category} · ${p.country}</div>
+            <h3>${p.title}</h3>
+            <p>${p.excerpt}</p>
+            <span style="color:var(--forest);font-weight:700;font-size:0.88rem;">Read →</span>
+          </div>
+        </a>`;
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Blog — Lechwe Safari</title>
+  <meta name="description" content="Travel articles and safari guides — gorilla trekking, national parks, wildlife, and East Africa travel tips from Lechwe Safari.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('https://keithassociatesug.com/lechwesafari.com/wp-content/uploads/2026/05/Rwanda-Safari-with-Kenya-Tanzania-720x450.jpg')"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span style="color:rgba(255,255,255,0.9)">Travel Blog</span></div>
+      <h1>Travel Blog</h1>
+      <p style="opacity:0.85;max-width:560px;margin-top:0.5rem;">Safari guides, destination stories, and wildlife insights from across East Africa.</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Articles & Guides</span>
+      <h2>Our Adventure Stories</h2>
+      <p>In-depth guides to East Africa's greatest wildlife destinations — written by those who know them best.</p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div style="display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;margin-bottom:2.5rem;" id="filter-bar">
+      <button class="btn btn-forest filter-btn active" data-filter="all">All</button>
+      <button class="btn btn-outline-dark filter-btn" data-filter="Uganda">Uganda</button>
+      <button class="btn btn-outline-dark filter-btn" data-filter="Rwanda">Rwanda</button>
+      <button class="btn btn-outline-dark filter-btn" data-filter="Destinations">Destinations</button>
+      <button class="btn btn-outline-dark filter-btn" data-filter="Activities">Activities</button>
+    </div>
+
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+</section>
+
+<section class="booking-strip">
+  <div>
+    <h2>Ready to Experience it Yourself?</h2>
+    <p>Stop reading about it — let Lechwe Safari take you there.</p>
+    <a href="contact.html" class="btn btn-forest">Plan Your Safari</a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/blog-data.js"></script>
+<script src="js/components.js"></script>
+<script>
+  initPage(0);
+
+  function renderPosts(filter) {
+    const grid = document.getElementById('blog-grid');
+    const posts = filter === 'all'
+      ? BLOG_POSTS
+      : BLOG_POSTS.filter(p => p.country === filter || p.category === filter);
+    grid.innerHTML = posts.map(p => `
+      <a href="post.html?id=${p.id}" class="blog-card" style="text-decoration:none;">
+        <div class="blog-card-img"><img src="${p.image}" alt="${p.title}" loading="lazy"></div>
+        <div class="blog-card-body">
+          <div class="category">${p.category} · ${p.country}</div>
+          <h3>${p.title}</h3>
+          <p>${p.excerpt}</p>
+          <span style="color:var(--forest);font-weight:700;font-size:0.88rem;">Read Article →</span>
+        </div>
+      </a>`).join('');
+  }
+
+  renderPosts('all');
+
+  document.getElementById('filter-bar').addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-btn')) return;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.remove('btn-forest','active');
+      b.classList.add('btn-outline-dark');
+    });
+    e.target.classList.add('btn-forest','active');
+    e.target.classList.remove('btn-outline-dark');
+    renderPosts(e.target.dataset.filter);
+  });
+</script>
+</body>
+</html>
