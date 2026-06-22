@@ -11,7 +11,7 @@ const PROMO = {
   alt: 'Nile Adventure Camp 2026 — 21-23 August, Explorers River Camp, Jinja',
   link: 'contact.html?promo=nile2026',   // click sull'immagine → contatti col contesto promo. '' = il click chiude soltanto
   expiry: '2026-08-20',   // dopo questa data l'overlay (e il banner/prefill in contact) non si attivano più
-  delayMs: 500,           // ritardo prima dell'apertura (mezzo secondo)
+  delayMs: 1000,          // ritardo prima dell'apertura (un secondo)
   oncePerSession: true,   // mostra una sola volta per sessione di navigazione
   banner: 'Nile Adventure Camp 2026 — 21–23 August · Explorers River Camp, Jinja',  // testo richiamo sopra il form
   prefill: "Hi, I'm interested in the Nile Adventure Camp 2026 (21–23 August, Explorers River Camp, Jinja). Please send me more details and availability.",  // testo precompilato nella textarea
@@ -100,17 +100,28 @@ function initPromoForm() {
     banner.classList.add('is-active');
     const cta = banner.querySelector('.promo-banner-cta');
     if (cta) cta.textContent = 'Added to your enquiry ✓';
-    if (msg) msg.focus();
   }
 
-  banner.addEventListener('click', fillPromo);
+  // Click/tastiera sul banner → prefill + focus sul messaggio (cursore pronto)
+  function activate() {
+    fillPromo();
+    const msg = document.getElementById('message');
+    if (msg) msg.focus();
+  }
+  banner.addEventListener('click', activate);
   banner.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fillPromo(); }
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
   });
 
-  // Arrivo dal promo → click "automatico"
+  // Arrivo dal promo → prefill automatico + scroll alla zona richiesta info
+  // (utile su mobile, dove il form è molto più in basso del banner)
   const params = new URLSearchParams(window.location.search);
-  if (params.get('promo')) fillPromo();
+  if (params.get('promo')) {
+    fillPromo();
+    setTimeout(function () {
+      banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
 }
 
 function getRelPath(depth = 0) {
