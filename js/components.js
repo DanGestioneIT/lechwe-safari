@@ -4,7 +4,7 @@
 
 const LOGO = 'images/logo-web.png';
 const WA_NUMBER = '+256760288509';
-const BUILD = '20260622.0944';   // aggiornato automaticamente da deploy.sh ad ogni pubblicazione
+const BUILD = '20260622.0946';   // aggiornato automaticamente da deploy.sh ad ogni pubblicazione
 
 const PROMO = {
   active: true,
