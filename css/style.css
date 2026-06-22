@@ -319,6 +319,7 @@ section { padding: 5rem 0; }
 
 /* ── TOUR DETAIL ───────────────────────────────────────── */
 .tour-detail-layout { display: grid; grid-template-columns: 1fr 360px; gap: 3rem; align-items: start; }
+.post-layout { display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: start; }
 .tour-sidebar {
   position: sticky; top: 7rem;
   background: var(--cream); border-radius: var(--radius);
@@ -503,6 +504,7 @@ section { padding: 5rem 0; }
 @media (max-width: 1024px) {
   .tour-detail-layout { grid-template-columns: 1fr; }
   .tour-sidebar { position: static; }
+  .post-layout { grid-template-columns: 1fr; }
   .dest-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
@@ -526,3 +528,27 @@ section { padding: 5rem 0; }
   .dest-grid { grid-template-columns: 1fr 1fr; }
   .stat-item { width: 100%; }
 }
+
+.promo-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:24px;background:rgba(0,0,0,.82);z-index:9999;opacity:0;transition:opacity .35s ease;cursor:pointer}
+.promo-overlay.is-visible{opacity:1}
+.promo-img{max-width:100%;max-height:90vh;width:auto;height:auto;border-radius:8px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);cursor:default;transform:scale(.85);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.promo-overlay.is-visible .promo-img{transform:scale(1)}
+.promo-close{position:absolute;top:16px;right:20px;width:44px;height:44px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.15);color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.promo-close:hover{background:rgba(255,255,255,.32)}
+body.promo-open{overflow:hidden}
+.promo-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.5rem .9rem;
+  background:var(--cream);border:1px solid var(--gold);border-left:4px solid var(--gold);
+  border-radius:6px;padding:.85rem 1.1rem;margin-bottom:1.25rem;color:var(--forest);
+  font-family:var(--font-body);line-height:1.4;cursor:pointer;
+  transition:background .2s ease,box-shadow .2s ease}
+.promo-banner:hover{background:#fff;box-shadow:0 4px 14px rgba(201,151,74,.25)}
+.promo-banner:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.promo-banner strong{color:var(--gold)}
+.promo-banner-cta{white-space:nowrap;font-weight:700;color:var(--gold)}
+.promo-banner.is-active{cursor:default;background:var(--cream);box-shadow:none}
+.promo-banner.is-active:hover{box-shadow:none}
+.promo-banner.is-active .promo-banner-cta{color:var(--forest)}

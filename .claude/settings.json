@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command' | grep -qE '\\bgit\\b([[:space:]]+-[^[:space:]]+)*[[:space:]]+(commit|push)\\b' && printf '%s' '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Direct git commit/push is disabled on this repo (see CLAUDE.md, Workflow section). Publish only via ./deploy.sh after the user confirms the local preview.\"}}' || true",
+            "statusMessage": "Checking git command policy"
+          }
+        ]
+      }
+    ]
+  }
+}

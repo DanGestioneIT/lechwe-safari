@@ -5,6 +5,111 @@
 const LOGO = 'images/logo-web.png';
 const WA_NUMBER = '+256760288509';
 
+const PROMO = {
+  active: true,
+  image: 'nile-adventure-camp-2026.jpg',
+  alt: 'Nile Adventure Camp 2026 — 21-23 August, Explorers River Camp, Jinja',
+  link: 'contact.html?promo=nile2026',   // click sull'immagine → contatti col contesto promo. '' = il click chiude soltanto
+  expiry: '2026-08-20',   // dopo questa data l'overlay (e il banner/prefill in contact) non si attivano più
+  delayMs: 500,           // ritardo prima dell'apertura (mezzo secondo)
+  oncePerSession: true,   // mostra una sola volta per sessione di navigazione
+  banner: 'Nile Adventure Camp 2026 — 21–23 August · Explorers River Camp, Jinja',  // testo richiamo sopra il form
+  prefill: "Hi, I'm interested in the Nile Adventure Camp 2026 (21–23 August, Explorers River Camp, Jinja). Please send me more details and availability.",  // testo precompilato nella textarea
+  destination: 'Uganda',      // valore precompilato nella select Destination ('' = non toccare)
+  travelMonth: '2026-08'      // input type=month: solo anno-mese, '' = non toccare
+};
+
+// true finché la promo è attiva e non scaduta — unico punto di verità per overlay e banner
+function promoIsLive() {
+  if (!PROMO.active) return false;
+  if (PROMO.expiry) {
+    const exp = new Date(PROMO.expiry + 'T23:59:59');
+    if (new Date() > exp) return false;
+  }
+  return true;
+}
+
+function initPromo(depth = 0) {
+  if (!promoIsLive()) return;
+  if (PROMO.oncePerSession && sessionStorage.getItem('promoSeen')) return;
+
+  const prefix = depth > 0 ? '../'.repeat(depth) : '';
+  const imgSrc = prefix + 'images/' + PROMO.image;
+
+  setTimeout(function () {
+    const overlay = document.createElement('div');
+    overlay.className = 'promo-overlay';
+    overlay.innerHTML =
+      '<button class="promo-close" aria-label="Chiudi">&times;</button>' +
+      '<img class="promo-img" src="' + imgSrc + '" alt="' + PROMO.alt + '">';
+    document.body.appendChild(overlay);
+    document.body.classList.add('promo-open');
+    requestAnimationFrame(function () { overlay.classList.add('is-visible'); });
+    if (PROMO.oncePerSession) sessionStorage.setItem('promoSeen', '1');
+
+    function close() {
+      overlay.classList.remove('is-visible');
+      document.body.classList.remove('promo-open');
+      setTimeout(function () { overlay.remove(); }, 350);
+      document.removeEventListener('keydown', onKey);
+    }
+    function onKey(e) { if (e.key === 'Escape') close(); }
+
+    overlay.querySelector('.promo-close').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    const img = overlay.querySelector('.promo-img');
+    if (PROMO.link) img.style.cursor = 'pointer';
+    img.addEventListener('click', function () {
+      if (PROMO.link) window.location.href = prefix + PROMO.link;
+      else close();
+    });
+    document.addEventListener('keydown', onKey);
+  }, PROMO.delayMs);
+}
+
+// Da chiamare in contact.html: finché la promo è live mostra SEMPRE un banner cliccabile
+// sopra il form. Il click precompila il form. Arrivando con ?promo=... il prefill è automatico.
+function initPromoForm() {
+  if (!promoIsLive()) return;
+
+  const form = document.getElementById('booking-form');
+  if (!form) return;
+
+  const banner = document.createElement('div');
+  banner.className = 'promo-banner';
+  banner.setAttribute('role', 'button');
+  banner.setAttribute('tabindex', '0');
+  banner.innerHTML =
+    '<span class="promo-banner-text"><strong>Special offer:</strong> ' + PROMO.banner + '</span>' +
+    '<span class="promo-banner-cta">Click to enquire →</span>';
+  form.parentNode.insertBefore(banner, form);
+
+  function fillPromo() {
+    const msg = document.getElementById('message');
+    if (msg && !msg.value) msg.value = PROMO.prefill;
+
+    const dest = document.getElementById('destination');
+    if (dest && !dest.value && PROMO.destination) dest.value = PROMO.destination;
+
+    const date = document.getElementById('travel-date');
+    if (date && !date.value && PROMO.travelMonth) date.value = PROMO.travelMonth;
+
+    banner.classList.add('is-active');
+    const cta = banner.querySelector('.promo-banner-cta');
+    if (cta) cta.textContent = 'Added to your enquiry ✓';
+    if (msg) msg.focus();
+  }
+
+  banner.addEventListener('click', fillPromo);
+  banner.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fillPromo(); }
+  });
+
+  // Arrivo dal promo → click "automatico"
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('promo')) fillPromo();
+}
+
 function getRelPath(depth = 0) {
   return depth === 0 ? '' : '../'.repeat(depth);
 }
