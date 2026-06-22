@@ -4,6 +4,7 @@
 
 const LOGO = 'images/logo-web.png';
 const WA_NUMBER = '+256760288509';
+const BUILD = '20260622.0941';   // aggiornato automaticamente da deploy.sh ad ogni pubblicazione
 
 const PROMO = {
   active: true,
@@ -213,7 +214,7 @@ function renderFooter(depth = 0) {
   </div>
   <div class="container">
     <div class="footer-bottom">
-      <p>© ${new Date().getFullYear()} Lechwe Safari. All rights reserved. | Kampala, Uganda</p>
+      <p>© ${new Date().getFullYear()} (Ver.${BUILD}) Lechwe Safari. All rights reserved. | Kampala, Uganda</p>
       <div class="footer-social">
         <a href="#" class="social-link" title="Facebook">f</a>
         <a href="#" class="social-link" title="Instagram">in</a>

@@ -8,6 +8,11 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+echo "🏷  Aggiorno build-id nel footer..."
+BUILD_ID=$(date +%Y%m%d.%H%M)
+sed -i '' "s/const BUILD = '[^']*';/const BUILD = '$BUILD_ID';/" js/components.js
+echo "   Ver.$BUILD_ID"
+
 echo "📦 Aggiunta file..."
 git add .
 
