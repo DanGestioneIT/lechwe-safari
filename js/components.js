@@ -31,7 +31,10 @@ function promoIsLive() {
 
 function initPromo(depth = 0) {
   if (!promoIsLive()) return;
-  if (PROMO.oncePerSession && sessionStorage.getItem('promoSeen')) return;
+
+  // Desktop (>768px): una volta per sessione. Mobile (<=768px): si apre sempre.
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (!isMobile && PROMO.oncePerSession && sessionStorage.getItem('promoSeen')) return;
 
   const prefix = depth > 0 ? '../'.repeat(depth) : '';
   const imgSrc = prefix + 'images/' + PROMO.image;
@@ -45,7 +48,7 @@ function initPromo(depth = 0) {
     document.body.appendChild(overlay);
     document.body.classList.add('promo-open');
     requestAnimationFrame(function () { overlay.classList.add('is-visible'); });
-    if (PROMO.oncePerSession) sessionStorage.setItem('promoSeen', '1');
+    if (!isMobile && PROMO.oncePerSession) sessionStorage.setItem('promoSeen', '1');
 
     function close() {
       overlay.classList.remove('is-visible');
